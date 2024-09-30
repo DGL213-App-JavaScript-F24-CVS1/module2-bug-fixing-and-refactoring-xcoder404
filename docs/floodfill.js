@@ -61,11 +61,11 @@
     }
 
     function rollBackHistory() {
-        console.log("Grids before undo: ", grids.length);
-        // The undo function has an error when trying to undo the last remaining grid
-        // I have changed if condition to avoid this problem
-    //   if (grids.length > 0) {
-    if(grids.length > 1){
+      console.log("Grids before undo: ", grids.length);
+      // The undo function has an error when trying to undo the last remaining grid
+      // I have changed if condition to avoid this problem
+      //   if (grids.length > 0) {
+      if (grids.length > 1) {
         grids = grids.slice(0, grids.length - 1);
         console.log("Grids after undo: ", grids.length);
         render(grids[grids.length - 1]);
@@ -134,7 +134,7 @@
 
     function floodFill(grid, gridCoordinate, colorToChange) {
       if (arraysAreEqual(colorToChange, replacementColor)) {
-        return;
+        return false;
       } //The current cell is already the selected color
       else if (
         !arraysAreEqual(
@@ -142,7 +142,7 @@
           colorToChange
         )
       ) {
-        return;
+        return false;
       } //The current cell is a different color than the initially clicked-on cell
       else {
         grid[gridCoordinate.row * CELLS_PER_AXIS + gridCoordinate.column] =
@@ -180,7 +180,7 @@
           colorToChange
         );
       }
-      return;
+      return true;
     }
 
     function restart() {
