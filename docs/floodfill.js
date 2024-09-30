@@ -93,8 +93,6 @@
 
     function render(grid) {
       for (let i = 0; i < grid.length; i++) {
-
-
         //Found a first and obvious bug by logging the colors
         //console.log(`Cell ${i}: RGB(${grid[i][0]}, ${grid[i][1]}, ${grid[i][2]})`);
         // =========== CHANGED grid[i][0] to grid[i][1] =========== //
@@ -114,22 +112,41 @@
         mousePositionX,
         mousePositionY
       );
-     
+
       const newGrid = grids[grids.length - 1].slice();
-      
-      floodFill(
+
+      const gridChange = floodFill(
         newGrid,
         gridCoordinates,
         newGrid[gridCoordinates.column * CELLS_PER_AXIS + gridCoordinates.row]
       );
+
+      if(gridChange){
       grids.push(newGrid);
+      updatePlayerScore();
       render(grids[grids.length - 1]);
+      }
     }
 
     function updatePlayerScore() {
-     
-      playerScore = playerScore > 0 ? (playerScore -= 1) : 0;
-      
+      const gridCoordinates = convertCartesiansToGrid(
+        event.offsetX,
+        event.offsetY
+      );
+      const currentColor =
+        grids[grids.length - 1][
+          gridCoordinates.row * CELLS_PER_AXIS + gridCoordinates.column
+        ];
+
+      console.log(
+        `Current color: ${currentColor}, Replacement color: ${replacementColor}`
+      );
+
+      if (!arraysAreEqual(currentColor, replacementColor)) {
+        playerScore = playerScore > 0 ? (playerScore -= 1) : 0;
+      }
+
+      console.log(`Player score: ${playerScore}`);
     }
 
     function floodFill(grid, gridCoordinate, colorToChange) {
