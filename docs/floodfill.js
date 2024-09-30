@@ -88,7 +88,12 @@
 
     function render(grid) {
       for (let i = 0; i < grid.length; i++) {
-        ctx.fillStyle = `rgb(${grid[i][0]}, ${grid[i][0]}, ${grid[i][2]})`;
+
+
+        //Found a first and obvious bug by logging the colors
+        //console.log(`Cell ${i}: RGB(${grid[i][0]}, ${grid[i][1]}, ${grid[i][2]})`);
+        // =========== CHANGED grid[i][0] to grid[i][1] =========== //
+        ctx.fillStyle = `rgb(${grid[i][0]}, ${grid[i][1]}, ${grid[i][2]})`;
         ctx.fillRect(
           (i % CELLS_PER_AXIS) * CELL_WIDTH,
           Math.floor(i / CELLS_PER_AXIS) * CELL_HEIGHT,
@@ -104,9 +109,9 @@
         mousePositionX,
         mousePositionY
       );
-      // console.log("Grid coordinates:", gridCoordinates);
+     
       const newGrid = grids[grids.length - 1].slice();
-      // console.log("New coordinates:", newGrid);
+      
       floodFill(
         newGrid,
         gridCoordinates,
@@ -117,9 +122,9 @@
     }
 
     function updatePlayerScore() {
-      // console.log("Player Score before update:", playerScore);
+     
       playerScore = playerScore > 0 ? (playerScore -= 1) : 0;
-      //console.log("Player Score after update:", playerScore);
+      
     }
 
     function floodFill(grid, gridCoordinate, colorToChange) {
