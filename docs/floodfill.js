@@ -61,8 +61,13 @@
     }
 
     function rollBackHistory() {
-      if (grids.length > 0) {
+        console.log("Grids before undo: ", grids.length);
+        // The undo function has an error when trying to undo the last remaining grid
+        // I have changed if condition to avoid this problem
+    //   if (grids.length > 0) {
+    if(grids.length > 1){
         grids = grids.slice(0, grids.length - 1);
+        console.log("Grids after undo: ", grids.length);
         render(grids[grids.length - 1]);
       }
     }
