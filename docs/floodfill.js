@@ -232,7 +232,7 @@
 
     colorSelectButtons.forEach((button) => {
       button.addEventListener(
-        "mousedown",
+        "click",
         () => (replacementColor = CELL_COLORS[button.name])
       );
     });
