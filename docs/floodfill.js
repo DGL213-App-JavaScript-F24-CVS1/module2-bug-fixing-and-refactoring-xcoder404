@@ -114,11 +114,14 @@
       );
 
       const newGrid = grids[grids.length - 1].slice();
+      console.log("Grid coordinates:", gridCoordinates);
 
       const gridChange = floodFill(
         newGrid,
         gridCoordinates,
-        newGrid[gridCoordinates.column * CELLS_PER_AXIS + gridCoordinates.row]
+        // Found another bug here, changed the calculation of index
+        
+        newGrid[gridCoordinates.row * CELLS_PER_AXIS + gridCoordinates.column]
       );
 
       if(gridChange){
@@ -153,7 +156,7 @@
       if (arraysAreEqual(colorToChange, replacementColor)) {
         return false;
       } //The current cell is already the selected color
-      else if (
+      if (
         !arraysAreEqual(
           grid[gridCoordinate.row * CELLS_PER_AXIS + gridCoordinate.column],
           colorToChange
@@ -161,7 +164,7 @@
       ) {
         return false;
       } //The current cell is a different color than the initially clicked-on cell
-      else {
+      
         grid[gridCoordinate.row * CELLS_PER_AXIS + gridCoordinate.column] =
           replacementColor;
         floodFill(
@@ -196,7 +199,7 @@
           },
           colorToChange
         );
-      }
+      
       return true;
     }
 
