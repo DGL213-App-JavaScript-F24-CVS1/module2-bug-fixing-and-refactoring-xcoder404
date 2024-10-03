@@ -220,7 +220,7 @@
     restartButton.addEventListener("mousedown", restartClickHandler);
     function restartClickHandler() {
       restart();
-      playerScoreText.innerText = 81;
+      playerScoreText.innerText = playerScore;
     }
 
     undoButton.addEventListener("mousedown", undoLastMove);
