@@ -114,7 +114,6 @@
       );
 
       const newGrid = grids[grids.length - 1].slice();
-      console.log("Grid coordinates:", gridCoordinates);
 
       const gridChange = floodFill(
         newGrid,
