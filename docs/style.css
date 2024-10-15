@@ -1,0 +1,8 @@
+#undo, #rotate{
+    padding: 5px 15px;
+}
+
+canvas{
+    cursor: pointer;
+    border: 1px solid white;
+}
